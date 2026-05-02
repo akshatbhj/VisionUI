@@ -1,0 +1,102 @@
+/* --- App.jsx Global Styles --- */
+.app-container {
+  padding: 40px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* A very light grey to make the white scanner pop */
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.app-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.debug-success {
+  text-align: center;
+  margin-top: 20px;
+  color: #155724;
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- CameraScanner Component Styles --- */
+
+.scanner-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.control-btn {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.display-area {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 400px;
+}
+
+.captured-image, .webcam-feed {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 15px auto;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.primary-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.placeholder-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.hidden-input {
+  display: none;
+}
