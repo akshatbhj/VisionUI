@@ -6,7 +6,7 @@ const CameraScanner = ({ onImageCaptured }) => {
   const webcamRef = useRef(null);
   const fileInputRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
-  const [isWebcamActive, setIsWebcamActive] = useState(true);
+  const [isWebcamActive, setIsWebcamActive] = useState(false);
 
   const capturePhoto = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -14,15 +14,16 @@ const CameraScanner = ({ onImageCaptured }) => {
     if (onImageCaptured) onImageCaptured(imageSrc);
   }, [webcamRef, onImageCaptured]);
 
+  // Standard pattern for aysnchronous javascript operations
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
+      const reader = new FileReader(); // 1. Create a worker
+      reader.onloadend = () => { // 2. Tell it what to do when it finishes
         setCapturedImage(reader.result);
         if (onImageCaptured) onImageCaptured(reader.result);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // 3. Finally, tell it to start working
     }
   };
 
