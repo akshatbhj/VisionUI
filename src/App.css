@@ -3,7 +3,7 @@
   padding: 40px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
-  background-color: #f8f9fa; /* A very light grey to make the white scanner pop */
+  background-color: #f8f9fa; 
 }
 
 .app-header {
@@ -99,4 +99,90 @@
 
 .hidden-input {
   display: none;
+}
+
+/* --- Loading State --- */
+.loading-message {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+/* --- Output Section --- */
+.output-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Live Preview Window --- */
+.preview-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.preview-header {
+  background-color: #f1f5f9;
+  padding: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: bold;
+  color: #334155;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  background-color: white;
+}
+
+/* --- Raw Code Export --- */
+.code-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.code-header {
+  background-color: #1e293b;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code-title {
+  font-weight: bold;
+}
+
+.copy-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.copy-button:hover {
+  background-color: #2563eb;
+}
+
+.code-textarea {
+  width: 100%;
+  height: 300px;
+  background-color: #0f172a;
+  color: #38bdf8;
+  padding: 15px;
+  font-family: monospace;
+  border: none;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
 }
