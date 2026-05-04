@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CameraScanner from "./components/CameraScanner";
 import { generateUISchema } from "./services/api";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./App.css";
 
 function App() {
@@ -41,12 +43,9 @@ function App() {
       {/* The Output Section */}
       {generatedUI && generatedUI.html && (
         <div className="output-container">
-          
           {/* 1. The Live Preview Window */}
           <div className="preview-card">
-            <div className="preview-header">
-              🌐 Live Website Preview
-            </div>
+            <div className="preview-header">🌐 Live Preview</div>
             <iframe
               srcDoc={generatedUI.html}
               title="Generated UI"
@@ -58,9 +57,7 @@ function App() {
           {/* 2. The Raw Code Export */}
           <div className="code-card">
             <div className="code-header">
-              <span className="code-title">
-                💻 Raw HTML/Tailwind Code
-              </span>
+              <span className="code-title">💻 Component Code</span>
               <button
                 onClick={() => navigator.clipboard.writeText(generatedUI.html)}
                 className="copy-button"
@@ -68,11 +65,28 @@ function App() {
                 Copy Code
               </button>
             </div>
-            <textarea
-              readOnly
-              value={generatedUI.html}
-              className="code-textarea"
-            />
+            <div
+              style={{
+                height: "300px",
+                overflow: "auto",
+                backgroundColor: "#1e1e1e",
+              }}
+            >
+              <SyntaxHighlighter
+                language="html"
+                style={vscDarkPlus}
+                customStyle={{
+                  margin: 0,
+                  padding: "15px",
+                  background: "transparent",
+                }}
+                wrapLines={true}
+                wrapLongLines={true}
+                showLineNumbers={true}
+              >
+                {generatedUI.html.replace(/></g, '>\n<')}
+              </SyntaxHighlighter>
+            </div>
           </div>
         </div>
       )}
