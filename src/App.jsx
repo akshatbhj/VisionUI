@@ -66,11 +66,7 @@ function App() {
               </button>
             </div>
             <div
-              style={{
-                height: "300px",
-                overflow: "auto",
-                backgroundColor: "#1e1e1e",
-              }}
+              className="code-textarea"
             >
               <SyntaxHighlighter
                 language="html"
