@@ -1,9 +1,15 @@
 /* --- App.jsx Global Styles --- */
 .app-container {
   padding: 40px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   min-height: 100vh;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
 }
 
 .app-header {
@@ -67,7 +73,8 @@
   min-height: 400px;
 }
 
-.captured-image, .webcam-feed {
+.captured-image,
+.webcam-feed {
   width: 100%;
   border-radius: 8px;
 }
@@ -135,7 +142,7 @@
 
 .preview-iframe {
   width: 100%;
-  height: 500px;
+  height: 100vh;
   border: none;
   background-color: white;
 }
@@ -178,4 +185,17 @@
   height: auto;
   overflow: auto;
   background-color: #1e1e1e;
+}
+
+.theming-chatbar-container {
+  display: flex;
+  width: 60%;
+  gap: 10px;
+}
+
+.theming-chatbar {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
 }
