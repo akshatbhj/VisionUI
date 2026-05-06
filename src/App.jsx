@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CameraScanner from "./components/CameraScanner";
-import { generateUISchema } from "./services/api";
+import { generateUISchema, applyThemeToUI } from "./services/api";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./App.css";
@@ -9,6 +9,8 @@ function App() {
   const [sketchImage, setSketchImage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [generatedUI, setGeneratedUI] = useState(null);
+  const [themeInput, setThemeInput] = useState("");
+  const [isTheming, setIsTheming] = useState(false);
 
   // This function receives the image from the CameraScanner component
   const handleImageCapture = async (base64Image) => {
@@ -20,6 +22,31 @@ function App() {
 
     setGeneratedUI(uiSchema);
     setIsProcessing(false);
+  };
+
+  const handleThemeSubmit = async () => {
+    if (!themeInput.trim() || !generatedUI) return;
+
+    setIsTheming(true);
+
+    try {
+      const updatedUI = await applyThemeToUI(generatedUI.html, themeInput);
+
+      // If the API failed and returned the original HTML, tell the user
+      if (updatedUI.html === generatedUI.html) {
+        alert(
+          "The AI server is currently overloaded. Please wait a few seconds and try again!",
+        );
+      } else {
+        setGeneratedUI(updatedUI);
+      }
+    } catch (error) {
+      alert("Something went wrong communicating with the AI.");
+      console.log(error);
+    } finally {
+      setIsTheming(false);
+      setThemeInput("");
+    }
   };
 
   return (
@@ -46,6 +73,28 @@ function App() {
           {/* 1. The Live Preview Window */}
           <div className="preview-card">
             <div className="preview-header">🌐 Live Preview</div>
+
+            {/* --- THEMING CHAT BAR --- */}
+            <div className="theming-chatbar-container" >
+              <input
+                type="text"
+                value={themeInput}
+                onChange={(e) => setThemeInput(e.target.value)}
+                placeholder="e.g., 'Make it dark mode cyberpunk' or 'Luxury minimalist'"
+                onKeyDown={(e) => e.key === "Enter" && handleThemeSubmit()}
+                disabled={isTheming}
+                className="theming-chatbar"
+              />
+              <button
+                onClick={handleThemeSubmit}
+                disabled={isTheming || !themeInput.trim()}
+                className="copy-button"
+                style={{ backgroundColor: isTheming ? "#94a3b8" : "#8b5cf6" }}
+              >
+                {isTheming ? "🎨 Painting..." : "✨ Reskin"}
+              </button>
+            </div>
+
             <iframe
               srcDoc={generatedUI.html}
               title="Generated UI"
@@ -65,9 +114,7 @@ function App() {
                 Copy Code
               </button>
             </div>
-            <div
-              className="code-textarea"
-            >
+            <div className="code-textarea">
               <SyntaxHighlighter
                 language="html"
                 style={vscDarkPlus}
@@ -80,7 +127,7 @@ function App() {
                 wrapLongLines={true}
                 showLineNumbers={true}
               >
-                {generatedUI.html.replace(/></g, '>\n<')}
+                {generatedUI.html.replace(/></g, ">\n<")}
               </SyntaxHighlighter>
             </div>
           </div>
