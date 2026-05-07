@@ -2,7 +2,6 @@ import { HfInference } from "@huggingface/inference";
 const API_KEY = import.meta.env.VITE_HUGGINGFACE_API_KEY;
 const aiModel = "google/gemma-4-26B-A4B-it";
 
-// Initialize the official client
 const hf = new HfInference(API_KEY);
 
 const systemPrompt = `You are an expert UX Architect, Senior Frontend Developer, and Systems Engineer. Analyze this hand-drawn sketch and convert it into the appropriate format.
@@ -37,7 +36,8 @@ If the sketch looks like a standard app screen or website, build a polished UI.
 Execution: Use Tailwind CSS via CDN. Apply modern styling, attractive colors, rounded corners, and realistic high-quality placeholders (e.g., <img src='https://picsum.photos/seed/ui/800/600' />). Center single components on the screen.
 
 ## Global Rules:
-- STRICT ADHERENCE: Do not invent extra sections (like footers) that are not in the sketch.
+- STRICT ADHERENCE: Do not invent extra sections (like footers) that are not in the sketch. 
+- AUTO-ACCESSIBILITY AND UX AUDIT: Make sure that all the components have required WAI-ARIA Screen Reader Compatible accessibility features. (Example: Aria-live labels, screen-reader essentials and Image Accessibility as well as Mobile Accessibility.
 - JSON SAFETY: Inside the "html" string, you MUST use SINGLE QUOTES for all HTML attributes. DO NOT use double quotes inside the HTML to prevent JSON parsing crashes.`;
 
 export const generateUISchema = async (base64Image) => {
