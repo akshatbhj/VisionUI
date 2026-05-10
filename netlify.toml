@@ -7,4 +7,4 @@
   to = "https://router.huggingface.co/:splat"
   status = 200
   force = true
-  headers = {Authorization = "Bearer $HF_TOKEN"}
+  headers = {Authorization = "Bearer $VITE_HUGGINGFACE_API_KEY"}
