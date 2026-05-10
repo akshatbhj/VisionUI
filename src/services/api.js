@@ -3,9 +3,7 @@ import systemPrompt from "./prompt";
 
 const API_KEY = import.meta.env.VITE_HUGGINGFACE_API_KEY;
 const aiModel = "google/gemma-4-26B-A4B-it";
-const hf = new HfInference(API_KEY, {
-  endpointUrl: "https://visionui0.netlify.app/hf-api",
-});
+const hf = new HfInference(API_KEY);
 
 export const generateUISchema = async (base64Image) => {
   console.log("🤖 Initializing AI inference via Hugging Face SDK...");
