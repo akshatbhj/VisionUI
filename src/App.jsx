@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>👁️ VisionUI</h1>
+        <h1>VisionUI</h1>
         <p>Upload or snap a photo of a UI sketch to generate code.</p>
       </header>
 
